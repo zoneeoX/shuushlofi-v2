@@ -1,0 +1,64 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python specific
+*.pyc
+__pycache__/
+
+# Django specific
+db.sqlite3
+
+# Node specific
+node_modules/
+
+# Environment variables
+.env
+
+# Static assets
+/public/static/
+
+# Build directories
+/build/
+dist/
+
+# Log files
+*.log
+
+# IDE specific
+.vscode/
+.idea/
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Others
+coverage/
+*.cover
+*.coverprofile
+*.cov
+*.coverage
+*.lcov
+*.lcovpath
+*.cache
+*.pyo
+*.pyd
+*.swp
+*.swo
+*.tmp
+
+# Output files
+*.out
+*.log
+*.log.*
+
+# NPM packages
+package-lock.json
+
+# Config files
+.eslintrc.cjs
+vite.config.js
+tailwind.config.js
+postcss.config.js
