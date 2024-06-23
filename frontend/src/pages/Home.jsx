@@ -11,6 +11,7 @@ import { IoAdd } from "react-icons/io5";
 import Modal from "../components/Modal";
 import { fetchUserTodo } from "../feature/getTodoSlice";
 import { BsTrash } from "react-icons/bs";
+import { FiEdit } from "react-icons/fi";
 import { deleteTodo } from "../feature/deleteTodoSlice";
 
 const Home = () => {
@@ -26,6 +27,8 @@ const Home = () => {
     url: "",
     image: "",
   });
+  const [requestType, setRequestType] = useState("");
+  const [currentId, setCurrentId] = useState("");
 
   const [isStartPomodoro, setIsStartPomodoro] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
@@ -67,15 +70,16 @@ const Home = () => {
         className="w-screen h-screen absolute object-center object-cover brightness-50"
       />
 
-      {isModal && <Modal setIsModal={setIsModal} />}
+      {isModal && <Modal setIsModal={setIsModal} type={requestType} currentId={currentId} />}
 
-      <div className="absolute top-0 right-0 p-10">
+      <div className="absolute top-0 right-0 p-10 z-10">
         <div className="bg-slate-800/75 w-96 min-h-72 max-h-full relative flex flex-col gap-4 text-white p-4 border border-white/20 backdrop-blur-sm">
           <div className="flex flex-row justify-between items-center">
             <h1 className="font-poppins text-xl">Tasks</h1>
             <button
               className="bg-slate-700 p-2 text-2xl rounded-full hover:bg-slate-600"
               onClick={() => {
+                setRequestType("add");
                 setIsModal(true);
               }}
             >
@@ -84,7 +88,7 @@ const Home = () => {
               </i>
             </button>
           </div>
-          <div className="bg-white/20 w-full h-[0.5px]" />
+          <div className="bg-white/20 w-full h-[0.5px] " />
           <div className="flex flex-col gap-4 overflow-scroll">
             {user_todo.map(({ title, id }, i) => (
               <div className="bg-slate-700 py-1 px-2 font-comfortaa rounded-lg flex flex-row gap-2 items-center justify-between group">
@@ -96,14 +100,26 @@ const Home = () => {
                   />
                   <h1 className="peer-checked:line-through ">{title}</h1>
                 </label>
-                <i
-                  className="invisible group-hover:visible hover:text-red-400"
-                  onClick={() => {
-                    handleTodoDelete({ id });
-                  }}
-                >
-                  <BsTrash />
-                </i>
+                <div className="flex flex-row gap-2">
+                  <i
+                    className="invisible group-hover:visible hover:text-red-400"
+                    onClick={() => {
+                      handleTodoDelete({ id });
+                    }}
+                  >
+                    <BsTrash />
+                  </i>
+                  <i
+                    className="invisible group-hover:visible hover:text-green-400"
+                    onClick={() => {
+                      setIsModal(true);
+                      setCurrentId(id);
+                      setRequestType("update");
+                    }}
+                  >
+                    <FiEdit />
+                  </i>
+                </div>
               </div>
             ))}
           </div>

@@ -2,15 +2,24 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postTodo } from "../feature/postTodoSlice";
 import { fetchUserTodo } from "../feature/getTodoSlice";
+import { putTodo } from "../feature/updateTodoSlice";
 
-const Modal = ({ setIsModal }) => {
+const Modal = ({ setIsModal, type, currentId }) => {
   const [title, setTitle] = useState("");
   const dispatch = useDispatch();
 
   const handleTodo = async () => {
-    await dispatch(postTodo({ title })).then(() => {
-      dispatch(fetchUserTodo());
-    });
+    if (type === "add") {
+      await dispatch(postTodo({ title })).then(() => {
+        dispatch(fetchUserTodo());
+      });
+    } else if (type === "update") {
+      await dispatch(putTodo({ currentId, title })).then(() => {
+        dispatch(fetchUserTodo());
+      });
+    } else {
+      console.log("Error");
+    }
     setIsModal(false);
   };
 

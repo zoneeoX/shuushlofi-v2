@@ -4,7 +4,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { deleteUserSong } from "../../feature/deleteSongSlice";
 
-const Card = ({ id, name, url, image, preview, handleSong }) => {
+const Card = ({ id, title, url, image, preview, handleSong }) => {
   const dispatch = useDispatch();
 
   function deleteSong() {
@@ -14,7 +14,7 @@ const Card = ({ id, name, url, image, preview, handleSong }) => {
   }
 
   function executeSong() {
-    handleSong({ name, url, image });
+    handleSong({ title, url, image });
   }
 
   return (
@@ -33,7 +33,7 @@ const Card = ({ id, name, url, image, preview, handleSong }) => {
                 <FiExternalLink />
               </i>
             </a>
-            <h1 className="w-[20vw] truncate p-2 ">{name}</h1>
+            <h1 className="w-[20vw] truncate p-2 ">{title}</h1>
           </div>
           {preview === "no" && (
             <i

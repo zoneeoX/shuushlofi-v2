@@ -157,19 +157,19 @@ const PlaylistSpace = ({ setPlaylistModal, setSongInformation }) => {
             <GridLayout>
               {fakeData.map(({ name, url, image }, i) => (
                 <div key={i} onClick={() => handleSong({ name, url, image })}>
-                  <Card name={name} url={url} image={image} preview={"yes"} />
+                  <Card title={name} url={url} image={image} preview={"yes"} />
                 </div>
               ))}
               {playlist.map(({ id, title, image, url }, i) => (
                 <div key={i}>
-                  <Card id={id} name={title} url={url} image={image} preview={"no"} handleSong={handleSong} />
+                  <Card id={id} title={title} url={url} image={image} preview={"no"} handleSong={handleSong} />
                 </div>
               ))}
             </GridLayout>
           </div>
 
           <div className="fixed left-0 bottom-0 w-screen h-[10vh] bg-gradient-to-t from-slate-500/50 to-transparent flex justify-center items-center text-white z-30">
-            <div className="flex flex-col items-center justify-center gap-2">
+            <div className="flex flex-col items-center justify-center gap-2 relative bottom-10">
               <h1 className="text-xl cursor-default font-poppins">
                 Tambahkan lagu favoritmu disini!
               </h1>

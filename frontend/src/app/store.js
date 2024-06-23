@@ -5,6 +5,7 @@ import deleteSongReducer from "../feature/deleteSongSlice";
 import postTodoReducer from "../feature/postTodoSlice";
 import deleteTodoReducer from "../feature/deleteTodoSlice";
 import getTodoReducer from "../feature/getTodoSlice";
+import updateTodoReducer from "../feature/updateTodoSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     post_todo: postTodoReducer,
     get_todo: getTodoReducer,
     delete_todo: deleteTodoReducer,
+    update_todo: updateTodoReducer,
   },
 });
